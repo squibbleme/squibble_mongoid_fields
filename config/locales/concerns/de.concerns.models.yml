@@ -1,0 +1,26 @@
+de:
+  concerns:
+    models:
+      squibble:
+        date_validity_optional:
+          period_validation:
+            base:
+              from_nil_till_nil: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} ohne zeitliche Einschränkung. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_nil_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum bis zum %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_present_till_nil: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_present_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from} bis %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+        date_validity:
+          period_validation:
+            base:
+              from_present_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from} bis %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+        date_time_validity_optional:
+          period_validation:
+            base:
+              from_nil_till_nil: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} ohne zeitliche Einschränkung. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_nil_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum bis zum %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_present_till_nil: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+              from_present_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from} bis %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'
+        date_time_validity:
+          period_validation:
+            base:
+              from_present_till_present: ! 'Es existiert bereits ein Objekt vom Typ %{model_name} für den Zeitraum vom %{from} bis %{till}. Dies führt zu einer Überschneidung mit dem angegebenen Zeitraum.'

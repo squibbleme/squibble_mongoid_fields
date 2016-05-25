@@ -1,0 +1,43 @@
+de:
+  defaults:
+    defaults: &defaults
+      id: ID
+      created_at: Erstellt am
+      updated_at: Aktualisiert am
+  mongoid:
+    attributes:
+      address:
+        <<: *defaults
+        salutation: Anrede
+        firstname: Vorname
+        lastname: Nachname
+        location_name:
+        latitude:
+        longitude:
+        company_name: Firmenname
+        street: Strasse
+        additional_street_information: Zusatz Informationen
+        zip_code: PLZ
+        town: Stadt
+        country: Land
+        province: Provinz
+        district: Kanton
+        full_address: Komplette Strasse
+        state: Staat
+    models:
+      address:
+        one: Adresse
+        other: Adressen
+    errors:
+      models:
+        address:
+          attributes:
+            firstname:
+              one_is_required: Der Vor- und Nachname oder der Firmenname ist ein Pflichtfeld.
+              company_name_is_set_so_first_and_lastname_are_not_allowed: Der Firmenname der Adresse ist gesetzt. Somit Vor- und Nachnamen der Adresse nicht zulässig.
+            lastname:
+              one_is_required: Der Vor- und Nachname oder der Firmenname ist ein Pflichtfeld.
+              company_name_is_set_so_first_and_lastname_are_not_allowed: Der Firmenname der Adresse ist gesetzt. Somit Vor- und Nachnamen der Adresse nicht zulässig.
+            company_name:
+              one_is_required: Der Vor- und Nachname oder der Firmenname ist ein Pflichtfeld.
+              company_name_is_set_so_first_and_lastname_are_not_allowed: Der Firmenname der Adresse ist gesetzt. Somit Vor- und Nachnamen der Adresse nicht zulässig.
