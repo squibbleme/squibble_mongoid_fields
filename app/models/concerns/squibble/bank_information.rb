@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::BankInformation
-
   extend ActiveSupport::Concern
 
   included do
-
     field :bank_name,
           type: String
 

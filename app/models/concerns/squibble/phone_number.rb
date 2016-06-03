@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::PhoneNumber
-
   extend ActiveSupport::Concern
 
   included do
-
     field :phone_number,
           type: String
     validates :phone_number,

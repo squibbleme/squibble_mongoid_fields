@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::Email
-
   extend ActiveSupport::Concern
 
   included do
-
     field :email,
           type: String
     validates :email,

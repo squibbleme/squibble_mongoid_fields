@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::Quantity
-
   extend ActiveSupport::Concern
 
   included do
-
     field :quantity,
           type: Float,
           default: 1.0

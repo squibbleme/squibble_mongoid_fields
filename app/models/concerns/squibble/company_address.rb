@@ -8,7 +8,6 @@
 # [...]
 #
 module Squibble::CompanyAddress
-
   extend ActiveSupport::Concern
 
   included do

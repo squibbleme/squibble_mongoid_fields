@@ -6,11 +6,10 @@
 # [...]
 #
 module Squibble::TimeValidity
-
   extend ActiveSupport::Concern
 
   included do
-    def self.included(base)
+    def self.included(_base)
     end
 
     field :valid_from,

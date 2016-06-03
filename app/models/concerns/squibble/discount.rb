@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::Discount
-
   extend ActiveSupport::Concern
 
   included do
-
     field :discount,
           type: Float,
           default: 0.0

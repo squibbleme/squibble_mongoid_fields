@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::Sort
-
   extend ActiveSupport::Concern
 
   included do
-
     field :sort,
           type: Integer,
           default: 0

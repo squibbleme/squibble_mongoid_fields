@@ -1,0 +1,38 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+Metrics/LineLength:
+  Max: 150
+
+Metrics/ClassLength:
+  CountComments: false  # count full line comments?
+  Max: 225
+
+Metrics/MethodLength:
+  Max: 30
+
+EndOfLine:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  # Checks the style of children definitions at classes and modules.
+  #
+  EnforcedStyle: compact
+Style/AsciiComments:
+  Enabled: false
+
+Lint/Eval:
+  Enabled: false
+
+# Deaktivierung des Missing top-level class documentation
+Documentation:
+    Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false

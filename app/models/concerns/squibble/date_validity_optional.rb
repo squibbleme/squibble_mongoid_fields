@@ -18,12 +18,11 @@
 # [...]
 #
 module Squibble::DateValidityOptional
-
   extend ActiveSupport::Concern
   include ApplicationHelper
 
   included do
-    def self.included(base)
+    def self.included(_base)
     end
 
     field :valid_from,
@@ -43,14 +42,14 @@ module Squibble::DateValidityOptional
     # Problem: CanCanCan Ability :principal_id wird im any_of 'OR' Block
     # mitgeführt
     #
-    scope :active, -> ( valuta = Time.zone.today ) do
-      class_name = eval(self.name)
+    scope :active, -> (valuta = Time.zone.today) do
+      class_name = eval(name)
       any_in(
         id: [
-          class_name.where( valid_from: nil, valid_till: nil).distinct(:id),
-          class_name.where( :valid_from.lte => valuta, valid_till: nil).distinct(:id),
-          class_name.where( valid_from: nil, :valid_till.gte => valuta).distinct(:id),
-          class_name.where( :valid_from.lte => valuta, :valid_till.gte => valuta).distinct(:id)
+          class_name.where(valid_from: nil, valid_till: nil).distinct(:id),
+          class_name.where(:valid_from.lte => valuta, valid_till: nil).distinct(:id),
+          class_name.where(valid_from: nil, :valid_till.gte => valuta).distinct(:id),
+          class_name.where(:valid_from.lte => valuta, :valid_till.gte => valuta).distinct(:id)
         ].flatten
       )
     end
@@ -73,7 +72,7 @@ module Squibble::DateValidityOptional
     # Überlappungsvalidierung ausgeführt.
     #
     def _date_validity_query_hash
-      if self.respond_to?(:principal_id)
+      if respond_to?(:principal_id)
         { principal_id: principal_id }
       else
         {}
@@ -83,23 +82,23 @@ module Squibble::DateValidityOptional
     # Diese Methode generiert den korrekten Fehler für die Validierung.
     #
     def _handle_error(error_key, from, till)
-      model_name = self.translated_resource_class(self.class)
+      model_name = translated_resource_class(self.class)
       translate_error_key = ['concerns.models.squibble.date_validity_optional.period_validation.base', error_key].join('.')
 
       if error_key == :from_nil_till_nil
-        msg = I18n.t(translate_error_key.to_sym, {model_name: model_name})
+        msg = I18n.t(translate_error_key.to_sym, model_name: model_name)
         errors.add :base, msg
 
       elsif error_key == :from_nil_till_present
-        msg = I18n.t(translate_error_key.to_sym, {model_name: model_name, till: I18n.l(till)})
+        msg = I18n.t(translate_error_key.to_sym, model_name: model_name, till: I18n.l(till))
         errors.add :base, msg
 
       elsif error_key == :from_present_till_nil
-        msg = I18n.t(translate_error_key.to_sym, {model_name: model_name, from: I18n.l(from)})
+        msg = I18n.t(translate_error_key.to_sym, model_name: model_name, from: I18n.l(from))
         errors.add :base, msg
 
       elsif error_key == :from_present_till_present
-        msg = I18n.t(translate_error_key.to_sym, {model_name: model_name, from: I18n.l(from), till: I18n.l(till)})
+        msg = I18n.t(translate_error_key.to_sym, model_name: model_name, from: I18n.l(from), till: I18n.l(till))
 
       end
 
@@ -121,7 +120,7 @@ module Squibble::DateValidityOptional
       # in der :resource gefragten Zeitraum zu erhalten. (:active_during(from,till)..)
       #
       affected_objects = self.class.where(_date_validity_query_hash)
-                                                .where(:id.ne => id)
+                             .where(:id.ne => id)
 
       # Gibt es keine :affected_objects mit denselben Zuweisungen, so
       # soll dies ein valider Datensatz sein. Gibt es aber :affected_objects,

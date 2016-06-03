@@ -6,12 +6,11 @@
 # [...]
 #
 module Squibble::DateValidity
-
   extend ActiveSupport::Concern
   include ApplicationHelper
 
   included do
-    def self.included(base)
+    def self.included(_base)
     end
 
     field :valid_from,
@@ -52,7 +51,7 @@ module Squibble::DateValidity
     # Überlappungsvalidierung ausgeführt.
     #
     def _date_validity_query_hash
-      if self.respond_to?(:principal_id)
+      if respond_to?(:principal_id)
         {
           principal_id: principal_id
         }
@@ -64,10 +63,10 @@ module Squibble::DateValidity
     # Diese Methode generiert den korrekten Fehler für die Validierung.
     #
     def _handle_error(error_key, from, till)
-      model_name = self.translated_resource_class(self.class)
+      model_name = translated_resource_class(self.class)
       translate_error_key = ['concerns.models.squibble.date_validity.period_validation.base', error_key].join('.')
 
-      msg = I18n.t(translate_error_key.to_sym, {model_name: model_name, from: I18n.l(from), till: I18n.l(till)})
+      msg = I18n.t(translate_error_key.to_sym, model_name: model_name, from: I18n.l(from), till: I18n.l(till))
 
       errors.add :base, msg
     end
@@ -91,7 +90,7 @@ module Squibble::DateValidity
       # in der :resource gefragten Zeitraum zu erhalten. (:active_during(from,till)..)
       #
       affected_objects = self.class.where(_date_validity_query_hash)
-                                                .where(:id.ne => id)
+                             .where(:id.ne => id)
 
       # Gibt es keine :affected_objects mit denselben Zuweisungen, so
       # soll dies ein valider Datensatz sein. Gibt es aber :affected_objects,

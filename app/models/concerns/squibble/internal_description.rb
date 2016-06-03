@@ -6,11 +6,9 @@
 # [...]
 #
 module Squibble::InternalDescription
-
   extend ActiveSupport::Concern
 
   included do
-
     # Ablage der Internen Bemerkung
     #
     field :internal_description,
