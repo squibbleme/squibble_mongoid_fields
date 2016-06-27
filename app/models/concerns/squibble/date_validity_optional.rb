@@ -82,7 +82,7 @@ module Squibble::DateValidityOptional
     # Diese Methode generiert den korrekten Fehler für die Validierung.
     #
     def _handle_error(error_key, from, till)
-      model_name = translated_resource_class(self.class)
+      model_name = self.class.model_name.human
       translate_error_key = ['concerns.models.squibble.date_validity_optional.period_validation.base', error_key].join('.')
 
       if error_key == :from_nil_till_nil
