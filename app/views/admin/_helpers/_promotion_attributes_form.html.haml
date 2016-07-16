@@ -1,0 +1,10 @@
+= portlet do
+  = portlet_title do
+    = portlet_title_caption resource_attribute_name(:promotion)
+  = portlet_body_form do
+
+    .row
+      .col-md-6
+        = f.input :promotion_valid_from, as: :date_time_picker
+      .col-md-6
+        = f.input :promotion_valid_till, as: :date_time_picker
