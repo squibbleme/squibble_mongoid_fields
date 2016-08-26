@@ -10,3 +10,4 @@ Auslagerung der "Standard Attribute" für die verschiedenen Applikationen, damit
 
 * 04.06.2016: Erweiterung um ```Squibble::Firstname``` und ```Squibble::Lastname```
 * 16.07.2016: Erweiterung um ```Squibble::PromotionAttributes``` inkl. Formular für Verwaltung
+* 26.08.2016: Erweiterung um ```Squibble::DescriptionShort```
